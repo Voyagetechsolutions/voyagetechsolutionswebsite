@@ -2,6 +2,7 @@
 import Base from "../layouts/Base.astro";
 import Button from "../components/Button.astro";
 import CtaBand from "../components/CtaBand.astro";
+import HeroArt from "../components/HeroArt.astro";
 import { SITE } from "../config/site.ts";
 
 const services = [
@@ -34,32 +35,57 @@ const proof = [
 <Base>
   <!-- Hero -->
   <section class="relative overflow-hidden">
+    <div class="glow pointer-events-none absolute inset-0 -z-10"></div>
+    <div class="grid-texture pointer-events-none absolute inset-0 -z-10"></div>
     <div
-      class="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(60%_60%_at_50%_0%,var(--color-brand-soft),transparent_70%)]"
+      class="mx-auto grid max-w-6xl items-center gap-12 px-5 pt-16 pb-16 sm:px-6 sm:pt-24 sm:pb-20 lg:grid-cols-[1.1fr_0.9fr]"
     >
-    </div>
-    <div class="mx-auto max-w-6xl px-5 pt-20 pb-16 sm:px-6 sm:pt-28 sm:pb-20">
-      <p
-        class="inline-flex items-center gap-2 rounded-full border border-[var(--color-line)] bg-white px-3 py-1 text-xs font-medium text-[var(--color-muted)]"
-      >
-        <span class="h-1.5 w-1.5 rounded-full bg-[var(--color-brand)]"></span>
-        Logistics &amp; fintech software
-      </p>
-      <h1
-        class="mt-6 max-w-3xl text-4xl font-semibold tracking-tight text-[var(--color-ink)] sm:text-5xl sm:leading-[1.07]"
-      >
-        We build document and compliance automation for logistics and fintech
-        teams.
-      </h1>
-      <p class="mt-5 max-w-xl text-lg leading-relaxed text-[var(--color-muted)]">
-        Shipping production software, not slide decks — and full-stack web,
-        mobile and systems work for teams that need it shipped, not promised. We
-        turn the paperwork, regulated workflows and stalled builds that slow you
-        down into reliable systems.
-      </p>
-      <div class="mt-8 flex flex-col gap-3 sm:flex-row">
-        <Button href={SITE.calendarUrl} external>Book a 20-min call</Button>
-        <Button href="/work" variant="ghost">See the work</Button>
+      <div>
+        <p
+          class="inline-flex items-center gap-2 rounded-full border border-[var(--color-line)] bg-[var(--color-surface)] px-3 py-1 text-xs font-medium text-[var(--color-ink-soft)]"
+        >
+          <span
+            class="pulse-dot h-1.5 w-1.5 rounded-full bg-[var(--color-accent)]"
+          ></span>
+          Logistics &amp; fintech software
+        </p>
+        <h1
+          class="mt-6 max-w-2xl text-4xl font-semibold tracking-tight text-[var(--color-ink)] sm:text-5xl sm:leading-[1.07]"
+        >
+          We build <span class="text-gradient">document and compliance
+          automation</span> for logistics and fintech teams.
+        </h1>
+        <p class="mt-5 max-w-xl text-lg leading-relaxed text-[var(--color-muted)]">
+          Shipping production software, not slide decks — and full-stack web,
+          mobile and systems work for teams that need it shipped, not promised.
+          We turn the paperwork, regulated workflows and stalled builds that slow
+          you down into reliable systems.
+        </p>
+        <div class="mt-8 flex flex-col gap-3 sm:flex-row">
+          <Button href={SITE.calendarUrl} external>Book a 20-min call</Button>
+          <Button href="/work" variant="ghost">See the work</Button>
+        </div>
+        <ul
+          class="mt-8 flex flex-wrap gap-x-6 gap-y-2 text-sm text-[var(--color-muted)]"
+        >
+          <li class="flex items-center gap-2">
+            <span class="text-[var(--color-accent)]">✓</span> POPIA / data-protection aware
+          </li>
+          <li class="flex items-center gap-2">
+            <span class="text-[var(--color-accent)]">✓</span> Shipped to production
+          </li>
+          <li class="flex items-center gap-2">
+            <span class="text-[var(--color-accent)]">✓</span> Direct with the builder
+          </li>
+        </ul>
+      </div>
+
+      <div class="relative hidden lg:block">
+        <div
+          class="rounded-3xl border border-[var(--color-line)] bg-[var(--color-surface)]/60 p-4 backdrop-blur-sm"
+        >
+          <HeroArt />
+        </div>
       </div>
     </div>
   </section>
@@ -74,7 +100,7 @@ const proof = [
         {
           proof.map((p) => (
             <div class="flex items-start gap-3">
-              <span class="mt-1 grid h-8 w-8 shrink-0 place-items-center rounded-lg border border-[var(--color-line)] bg-white text-sm font-bold text-[var(--color-ink)]">
+              <span class="mt-1 grid h-8 w-8 shrink-0 place-items-center rounded-lg border border-[var(--color-line)] bg-[var(--color-surface-2)] text-sm font-bold text-[var(--color-brand)]">
                 {p.name.charAt(0)}
               </span>
               <div>
@@ -100,7 +126,7 @@ const proof = [
     <div class="mt-10 grid gap-5 md:grid-cols-3">
       {
         services.map((s) => (
-          <div class="rounded-[var(--radius-card)] border border-[var(--color-line)] bg-white p-6 transition-shadow hover:shadow-sm">
+          <div class="card p-6">
             <h3 class="text-lg font-semibold text-[var(--color-ink)]">
               {s.title}
             </h3>
@@ -141,7 +167,7 @@ const proof = [
             <Button href="/work" variant="ghost">Read the full story</Button>
           </div>
         </div>
-        <div class="rounded-[var(--radius-card)] border border-[var(--color-line)] bg-white p-7">
+        <div class="rounded-[var(--radius-card)] border border-[var(--color-line)] bg-[var(--color-surface)] p-7">
           <dl class="grid grid-cols-2 gap-6">
             <div>
               <dt class="text-sm text-[var(--color-muted)]">Documents automated</dt>

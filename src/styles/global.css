@@ -1,25 +1,30 @@
 @import "tailwindcss";
 
 /*
- * Brand theme. A restrained palette: deep navy + a single signal accent.
- * Adjust these tokens to re-skin the whole site.
+ * Dark navy theme. Deep near-black navy canvas, electric-blue brand, a cyan
+ * accent for life. Re-skin the whole site by editing these tokens.
  */
 @theme {
-  --color-ink: #0b1220;
-  --color-ink-soft: #1b2435;
-  --color-paper: #ffffff;
-  --color-mist: #f4f6fb;
-  --color-line: #e3e8f2;
-  --color-muted: #5b6678;
+  --color-bg: #060a16; /* page background — deep navy black */
+  --color-paper: #060a16; /* alias kept for legacy references */
+  --color-mist: #0a1122; /* alternate section band */
+  --color-surface: #0e1730; /* card surface */
+  --color-surface-2: #14213f; /* raised surface / inputs */
+  --color-line: #1d2b4a; /* hairline borders */
 
-  --color-brand: #0f5fff;
-  --color-brand-dark: #0a47c2;
-  --color-brand-soft: #e8f0ff;
+  --color-ink: #eef2fb; /* primary text */
+  --color-ink-soft: #c3cee6; /* secondary text */
+  --color-muted: #8a99bd; /* muted text */
+
+  --color-brand: #3d7bff; /* electric blue */
+  --color-brand-dark: #2a5fe0; /* button hover */
+  --color-brand-soft: #15264c; /* chip / tint on dark */
+  --color-accent: #2fd9e6; /* cyan — used sparingly for life */
 
   --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system,
     "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
 
-  --radius-card: 14px;
+  --radius-card: 16px;
 }
 
 html {
@@ -28,7 +33,7 @@ html {
 }
 
 body {
-  background-color: var(--color-paper);
+  background-color: var(--color-bg);
   color: var(--color-ink);
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
@@ -40,4 +45,68 @@ body {
   outline: 2px solid var(--color-brand);
   outline-offset: 2px;
   border-radius: 4px;
+}
+
+/* ---- Helpers that give the dark theme life ---- */
+
+/* Gradient text for accent words in headings. */
+.text-gradient {
+  background: linear-gradient(
+    100deg,
+    var(--color-ink) 0%,
+    var(--color-brand) 55%,
+    var(--color-accent) 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Card with a hover lift + brand glow. */
+.card {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-card);
+  transition: border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+.card:hover {
+  border-color: color-mix(in srgb, var(--color-brand) 55%, transparent);
+  transform: translateY(-2px);
+  box-shadow: 0 18px 40px -22px var(--color-brand);
+}
+
+/* Soft brand glow used behind hero / CTA. */
+.glow {
+  background: radial-gradient(
+    60% 60% at 50% 0%,
+    color-mix(in srgb, var(--color-brand) 35%, transparent),
+    transparent 70%
+  );
+}
+
+/* Faint grid texture for section depth. */
+.grid-texture {
+  background-image:
+    linear-gradient(to right, var(--color-line) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--color-line) 1px, transparent 1px);
+  background-size: 48px 48px;
+  mask-image: radial-gradient(70% 60% at 50% 0%, #000 30%, transparent 75%);
+  -webkit-mask-image: radial-gradient(70% 60% at 50% 0%, #000 30%, transparent 75%);
+  opacity: 0.5;
+}
+
+/* Pulsing live-status dot. */
+@keyframes pulse-ring {
+  0% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--color-accent) 70%, transparent); }
+  70% { box-shadow: 0 0 0 6px transparent; }
+  100% { box-shadow: 0 0 0 0 transparent; }
+}
+.pulse-dot {
+  animation: pulse-ring 2.4s ease-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pulse-dot { animation: none; }
+  .card { transition: none; }
+  html { scroll-behavior: auto; }
 }

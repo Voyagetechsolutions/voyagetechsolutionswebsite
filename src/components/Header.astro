@@ -13,14 +13,14 @@ const path = Astro.url.pathname.replace(/\/$/, "") || "/";
 ---
 
 <header
-  class="sticky top-0 z-40 border-b border-[var(--color-line)] bg-white/85 backdrop-blur-md"
+  class="sticky top-0 z-40 border-b border-[var(--color-line)] bg-[var(--color-bg)]/80 backdrop-blur-md"
 >
   <div
     class="mx-auto flex h-16 max-w-6xl items-center justify-between px-5 sm:px-6"
   >
     <a href="/" class="flex items-center gap-2.5 font-semibold tracking-tight">
       <span
-        class="grid h-8 w-8 place-items-center rounded-lg bg-[var(--color-ink)] text-sm font-bold text-white"
+        class="grid h-8 w-8 place-items-center rounded-lg bg-gradient-to-br from-[var(--color-brand)] to-[var(--color-accent)] text-sm font-bold text-white shadow-md shadow-[var(--color-brand)]/30"
         aria-hidden="true">V</span
       >
       <span class="text-[15px]">{SITE.name}</span>

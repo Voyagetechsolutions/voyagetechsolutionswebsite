@@ -1,0 +1,110 @@
+---
+// Bespoke SVG: freight/containers on the left flowing into structured
+// document + data output on the right — "document & compliance automation"
+// rendered as art. Zero external weight, on-palette, subtly animated.
+//
+// SWAP SLOT: to use a real generated (Higgsfield) hero image instead,
+// drop it at /public/images/hero.webp and replace this component with an
+// <img src="/images/hero.webp" /> in index.astro.
+---
+
+<div class="relative w-full">
+  <svg
+    viewBox="0 0 520 420"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    class="w-full h-auto"
+    role="img"
+    aria-label="Freight documents flowing into a clean automated data pipeline"
+  >
+    <defs>
+      <linearGradient id="ha-brand" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0" stop-color="#3d7bff" />
+        <stop offset="1" stop-color="#2fd9e6" />
+      </linearGradient>
+      <linearGradient id="ha-panel" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#14213f" />
+        <stop offset="1" stop-color="#0c1530" />
+      </linearGradient>
+      <radialGradient id="ha-glow" cx="0.7" cy="0.35" r="0.6">
+        <stop offset="0" stop-color="#3d7bff" stop-opacity="0.45" />
+        <stop offset="1" stop-color="#3d7bff" stop-opacity="0" />
+      </radialGradient>
+      <filter id="ha-soft" x="-20%" y="-20%" width="140%" height="140%">
+        <feGaussianBlur stdDeviation="6" />
+      </filter>
+    </defs>
+
+    <!-- ambient glow -->
+    <rect x="0" y="0" width="520" height="420" fill="url(#ha-glow)" />
+
+    <!-- connecting data lines (left freight -> right output) -->
+    <g stroke="url(#ha-brand)" stroke-width="1.6" opacity="0.55">
+      <path d="M150 150 C 250 130, 300 180, 360 165" fill="none" />
+      <path d="M150 210 C 250 210, 300 210, 360 210" fill="none" />
+      <path d="M150 270 C 250 290, 300 240, 360 255" fill="none" />
+    </g>
+    <!-- travelling data pulses -->
+    <g fill="#2fd9e6">
+      <circle r="3" cx="0" cy="0">
+        <animateMotion dur="3.2s" repeatCount="indefinite"
+          path="M150 150 C 250 130, 300 180, 360 165" />
+      </circle>
+      <circle r="3" cx="0" cy="0">
+        <animateMotion dur="3.8s" begin="0.6s" repeatCount="indefinite"
+          path="M150 210 C 250 210, 300 210, 360 210" />
+      </circle>
+      <circle r="3" cx="0" cy="0">
+        <animateMotion dur="3.5s" begin="1.1s" repeatCount="indefinite"
+          path="M150 270 C 250 290, 300 240, 360 255" />
+      </circle>
+    </g>
+
+    <!-- LEFT: stacked freight containers (the messy manual input) -->
+    <g filter="url(#ha-soft)" opacity="0.5">
+      <rect x="44" y="250" width="120" height="64" rx="8" fill="#3d7bff" opacity="0.25" />
+    </g>
+    <g>
+      <rect x="40" y="120" width="118" height="40" rx="7" fill="url(#ha-panel)" stroke="#28406f" />
+      <rect x="40" y="120" width="10" height="40" rx="4" fill="#3d7bff" opacity="0.7" />
+      <rect x="52" y="170" width="118" height="40" rx="7" fill="url(#ha-panel)" stroke="#28406f" />
+      <rect x="52" y="170" width="10" height="40" rx="4" fill="#2fd9e6" opacity="0.6" />
+      <rect x="40" y="220" width="118" height="40" rx="7" fill="url(#ha-panel)" stroke="#28406f" />
+      <rect x="40" y="220" width="10" height="40" rx="4" fill="#3d7bff" opacity="0.7" />
+      <!-- corrugation lines -->
+      <g stroke="#28406f" stroke-width="1">
+        <line x1="70" y1="124" x2="70" y2="156" />
+        <line x1="90" y1="124" x2="90" y2="156" />
+        <line x1="110" y1="124" x2="110" y2="156" />
+        <line x1="130" y1="124" x2="130" y2="156" />
+      </g>
+    </g>
+
+    <!-- RIGHT: clean structured document (the automated output) -->
+    <g>
+      <rect x="356" y="96" width="128" height="168" rx="12"
+        fill="url(#ha-panel)" stroke="#28406f" />
+      <rect x="356" y="96" width="128" height="34" rx="12" fill="#3d7bff" opacity="0.18" />
+      <circle cx="374" cy="113" r="5" fill="url(#ha-brand)" />
+      <rect x="386" y="110" width="60" height="6" rx="3" fill="#3d7bff" opacity="0.7" />
+      <g fill="#8a99bd">
+        <rect x="372" y="146" width="96" height="6" rx="3" opacity="0.7" />
+        <rect x="372" y="162" width="78" height="6" rx="3" opacity="0.5" />
+        <rect x="372" y="186" width="96" height="6" rx="3" opacity="0.7" />
+        <rect x="372" y="202" width="60" height="6" rx="3" opacity="0.5" />
+      </g>
+      <!-- validated check -->
+      <circle cx="456" cy="238" r="14" fill="#0c1530" stroke="#2fd9e6" />
+      <path d="M449 238 l5 5 l9 -11" stroke="#2fd9e6" stroke-width="2.4"
+        fill="none" stroke-linecap="round" stroke-linejoin="round" />
+    </g>
+
+    <!-- floating accent nodes -->
+    <circle cx="300" cy="96" r="4" fill="#2fd9e6">
+      <animate attributeName="opacity" values="0.3;1;0.3" dur="2.6s" repeatCount="indefinite" />
+    </circle>
+    <circle cx="250" cy="330" r="3" fill="#3d7bff">
+      <animate attributeName="opacity" values="0.3;1;0.3" dur="3.1s" begin="0.5s" repeatCount="indefinite" />
+    </circle>
+  </svg>
+</div>

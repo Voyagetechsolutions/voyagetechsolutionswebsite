@@ -53,9 +53,9 @@ const services = [
     <div class="grid gap-5 md:grid-cols-2">
       {
         services.map((s, i) => (
-          <div class="relative rounded-[var(--radius-card)] border border-[var(--color-line)] bg-white p-7">
+          <div class="card relative p-7">
             {s.proven && (
-              <span class="absolute right-6 top-7 rounded-full bg-[var(--color-brand-soft)] px-2.5 py-1 text-xs font-semibold text-[var(--color-brand-dark)]">
+              <span class="absolute right-6 top-7 rounded-full border border-[var(--color-brand)]/30 bg-[var(--color-brand-soft)] px-2.5 py-1 text-xs font-semibold text-[var(--color-brand)]">
                 Proven strength
               </span>
             )}

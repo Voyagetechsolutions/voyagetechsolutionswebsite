@@ -15,9 +15,13 @@ const {
 
 <section class="px-5 py-16 sm:px-6">
   <div
-    class="mx-auto max-w-5xl overflow-hidden rounded-3xl bg-[var(--color-ink)] px-7 py-12 text-white sm:px-12 sm:py-14"
+    class="relative mx-auto max-w-5xl overflow-hidden rounded-3xl border border-[var(--color-line)] bg-gradient-to-br from-[var(--color-surface-2)] via-[var(--color-surface)] to-[var(--color-bg)] px-7 py-12 text-white sm:px-12 sm:py-14"
   >
-    <div class="max-w-2xl">
+    <div
+      class="pointer-events-none absolute -right-16 -top-24 h-64 w-64 rounded-full bg-[var(--color-brand)] opacity-30 blur-3xl"
+    >
+    </div>
+    <div class="relative max-w-2xl">
       <h2 class="text-2xl font-semibold tracking-tight sm:text-3xl">
         {heading}
       </h2>
