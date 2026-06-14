@@ -1,0 +1,53 @@
+---
+interface Props {
+  href: string;
+  variant?: "primary" | "ghost";
+  /** Render as an external link (adds target + rel). */
+  external?: boolean;
+  class?: string;
+}
+
+const {
+  href,
+  variant = "primary",
+  external = false,
+  class: extra = "",
+} = Astro.props;
+
+const base =
+  "inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-semibold transition-colors duration-150 focus-visible:outline-none";
+
+const styles = {
+  primary:
+    "bg-[var(--color-brand)] text-white hover:bg-[var(--color-brand-dark)] shadow-sm shadow-[var(--color-brand)]/20",
+  ghost:
+    "border border-[var(--color-line)] bg-white text-[var(--color-ink)] hover:border-[var(--color-brand)] hover:text-[var(--color-brand)]",
+};
+
+const rel = external ? "noopener noreferrer" : undefined;
+const target = external ? "_blank" : undefined;
+---
+
+<a
+  href={href}
+  rel={rel}
+  target={target}
+  class={`${base} ${styles[variant]} ${extra}`}
+>
+  <slot />
+  <svg
+    aria-hidden="true"
+    width="16"
+    height="16"
+    viewBox="0 0 16 16"
+    fill="none"
+    class="-mr-1"
+  >
+    <path
+      d="M3.5 8h9m0 0L9 4.5M12.5 8 9 11.5"
+      stroke="currentColor"
+      stroke-width="1.6"
+      stroke-linecap="round"
+      stroke-linejoin="round"></path>
+  </svg>
+</a>

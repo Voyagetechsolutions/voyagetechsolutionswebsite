@@ -1,0 +1,43 @@
+@import "tailwindcss";
+
+/*
+ * Brand theme. A restrained palette: deep navy + a single signal accent.
+ * Adjust these tokens to re-skin the whole site.
+ */
+@theme {
+  --color-ink: #0b1220;
+  --color-ink-soft: #1b2435;
+  --color-paper: #ffffff;
+  --color-mist: #f4f6fb;
+  --color-line: #e3e8f2;
+  --color-muted: #5b6678;
+
+  --color-brand: #0f5fff;
+  --color-brand-dark: #0a47c2;
+  --color-brand-soft: #e8f0ff;
+
+  --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system,
+    "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+
+  --radius-card: 14px;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background-color: var(--color-paper);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* Focus ring that survives the reset, for keyboard users. */
+:where(a, button, input, textarea):focus-visible {
+  outline: 2px solid var(--color-brand);
+  outline-offset: 2px;
+  border-radius: 4px;
+}

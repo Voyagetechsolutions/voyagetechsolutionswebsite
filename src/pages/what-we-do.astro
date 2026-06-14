@@ -1,0 +1,91 @@
+---
+import Base from "../layouts/Base.astro";
+import CtaBand from "../components/CtaBand.astro";
+
+const services = [
+  {
+    title: "Document automation",
+    problem:
+      "Your team re-keys, re-formats and re-checks the same documents — invoices, delivery notes, customs and shipping paperwork — by hand. It's slow, and every manual step is a chance to introduce an error.",
+    outcome:
+      "We build rule-driven pipelines that take your raw data and produce clean, consistent documents automatically. The same input always yields the same correct output, in minutes instead of hours.",
+  },
+  {
+    title: "Compliance & data-protection tooling",
+    problem:
+      "You handle sensitive data in a regulated environment (POPIA, customer PII, financial records) and a mishandling isn't just embarrassing — it's a liability.",
+    outcome:
+      "We build software that treats data handling as a first-class requirement, with the controls and guardrails regulated teams actually need. Endon AI — our on-device PII redaction tool — is proof we build for these environments.",
+  },
+  {
+    title: "Logistics & freight-ops tooling",
+    problem:
+      "Cross-border and freight operations run on spreadsheets, email threads and tribal knowledge that doesn't scale and breaks when someone is away.",
+    outcome:
+      "We build the operational tooling that captures that workflow in software — tracking, document generation, and the glue between the systems you already use.",
+  },
+  {
+    title: "Full-stack product builds",
+    problem:
+      "You have a product idea or an internal tool that's been stuck at 'someday' because there's no one to take it from concept to something your team can actually use.",
+    outcome:
+      "We design, build and ship end-to-end web applications to production — and stay accountable for whether they work, not just whether they demo.",
+  },
+];
+---
+
+<Base
+  title="What we do"
+  description="Document automation, compliance tooling, logistics ops software and full-stack product builds for logistics and fintech teams."
+>
+  <section class="mx-auto max-w-6xl px-5 pt-20 pb-12 sm:px-6">
+    <h1 class="max-w-3xl text-4xl font-semibold tracking-tight sm:text-5xl">
+      Problems we solve
+    </h1>
+    <p class="mt-5 max-w-2xl text-lg leading-relaxed text-[var(--color-muted)]">
+      We don't lead with a tech stack. We lead with the bottleneck you're trying
+      to clear. Here's the work we do best.
+    </p>
+  </section>
+
+  <section class="mx-auto max-w-6xl px-5 pb-16 sm:px-6">
+    <div class="grid gap-5 md:grid-cols-2">
+      {
+        services.map((s, i) => (
+          <div class="rounded-[var(--radius-card)] border border-[var(--color-line)] bg-white p-7">
+            <span class="text-xs font-semibold text-[var(--color-brand)]">
+              {String(i + 1).padStart(2, "0")}
+            </span>
+            <h2 class="mt-2 text-xl font-semibold text-[var(--color-ink)]">
+              {s.title}
+            </h2>
+            <p class="mt-4 text-sm font-medium text-[var(--color-ink-soft)]">
+              The problem
+            </p>
+            <p class="mt-1 text-sm leading-relaxed text-[var(--color-muted)]">
+              {s.problem}
+            </p>
+            <p class="mt-4 text-sm font-medium text-[var(--color-ink-soft)]">
+              What you get
+            </p>
+            <p class="mt-1 text-sm leading-relaxed text-[var(--color-muted)]">
+              {s.outcome}
+            </p>
+          </div>
+        ))
+      }
+    </div>
+
+    <p class="mt-10 max-w-2xl text-sm text-[var(--color-muted)]">
+      <span class="font-medium text-[var(--color-ink)]">Stack, for the record:</span>
+      modern web (TypeScript, React/Astro), Node back ends, and on-device /
+      browser-native tooling where data sensitivity demands it. We pick the boring,
+      reliable option over the fashionable one.
+    </p>
+  </section>
+
+  <CtaBand
+    heading="Not sure which of these you need?"
+    sub="Describe the workflow that's costing you the most time. We'll tell you straight whether it's worth automating."
+  />
+</Base>
