@@ -2,7 +2,6 @@
 import Base from "../layouts/Base.astro";
 import Button from "../components/Button.astro";
 import CtaBand from "../components/CtaBand.astro";
-import HeroArt from "../components/HeroArt.astro";
 import { SITE } from "../config/site.ts";
 
 const services = [
@@ -83,10 +82,35 @@ const proof = [
       </div>
 
       <div class="relative hidden lg:block">
+        <div class="glow pointer-events-none absolute -inset-6 -z-10 opacity-80"></div>
         <div
-          class="rounded-3xl border border-[var(--color-line)] bg-[var(--color-surface)]/60 p-4 backdrop-blur-sm"
+          class="overflow-hidden rounded-3xl border border-[var(--color-line)] shadow-2xl shadow-[var(--color-brand)]/20"
         >
-          <HeroArt />
+          <img
+            src="/images/hero.webp"
+            width="1264"
+            height="848"
+            alt="Freight and shipping documents flowing into an automated, structured data pipeline"
+            class="h-auto w-full"
+            loading="eager"
+            fetchpriority="high"
+            decoding="async"
+          />
+        </div>
+        <!-- floating proof badge for life + conversion -->
+        <div
+          class="absolute -bottom-5 -left-5 flex items-center gap-3 rounded-2xl border border-[var(--color-line)] bg-[var(--color-surface)]/90 px-4 py-3 shadow-xl backdrop-blur-md"
+        >
+          <span
+            class="grid h-9 w-9 place-items-center rounded-xl bg-[var(--color-brand-soft)] text-[var(--color-accent)]"
+            aria-hidden="true">✓</span
+          >
+          <div class="leading-tight">
+            <p class="text-sm font-semibold text-[var(--color-ink)]">
+              Production software
+            </p>
+            <p class="text-xs text-[var(--color-muted)]">shipped, not slide decks</p>
+          </div>
         </div>
       </div>
     </div>
