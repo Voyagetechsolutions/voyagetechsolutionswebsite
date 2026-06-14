@@ -105,8 +105,36 @@ body {
   animation: pulse-ring 2.4s ease-out infinite;
 }
 
+/* Subtle sweeping sheen to draw the eye to the primary CTA. */
+@keyframes sheen {
+  0% { transform: translateX(-130%) skewX(-14deg); }
+  55%, 100% { transform: translateX(320%) skewX(-14deg); }
+}
+.cta-shimmer {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+.cta-shimmer::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  width: 35%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.28),
+    transparent
+  );
+  transform: translateX(-130%) skewX(-14deg);
+  animation: sheen 5s ease-in-out infinite;
+  pointer-events: none;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .pulse-dot { animation: none; }
   .card { transition: none; }
+  .cta-shimmer::after { animation: none; display: none; }
   html { scroll-behavior: auto; }
 }

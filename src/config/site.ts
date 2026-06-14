@@ -18,7 +18,7 @@ export const SITE = {
   calendarUrl: "https://cal.com/your-handle/intro-call",
   /** One-line description for meta tags + footer. */
   tagline:
-    "Document and compliance automation for logistics and fintech teams.",
+    "We build software for document and compliance automation in logistics and fintech.",
   /** Longer meta description for SEO / link previews. */
   description:
     "We build document and compliance automation for logistics and fintech teams — shipping production software, not slide decks.",

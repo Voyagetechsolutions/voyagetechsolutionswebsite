@@ -1,0 +1,94 @@
+---
+import { SITE } from "../config/site.ts";
+
+interface Props {
+  /** Show the wordmark text next to the mark. */
+  wordmark?: boolean;
+  class?: string;
+}
+
+const { wordmark = true, class: extra = "" } = Astro.props;
+
+// Rebrand-safe wordmark: big word = shortName, the rest renders small.
+const big = SITE.shortName;
+const rest = SITE.name.replace(SITE.shortName, "").trim();
+---
+
+<a
+  href="/"
+  class={`group inline-flex items-center gap-2.5 ${extra}`}
+  aria-label={SITE.name}
+>
+  <span
+    class="relative inline-grid h-9 w-9 place-items-center transition-transform duration-300 group-hover:scale-105"
+  >
+    <svg
+      width="36"
+      height="36"
+      viewBox="0 0 36 36"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      aria-hidden="true"
+    >
+      <defs>
+        <linearGradient id="vts-logo" x1="4" y1="4" x2="32" y2="32"
+          gradientUnits="userSpaceOnUse">
+          <stop offset="0" stop-color="#3d7bff" />
+          <stop offset="1" stop-color="#2fd9e6" />
+        </linearGradient>
+      </defs>
+      <!-- badge -->
+      <rect x="1" y="1" width="34" height="34" rx="9.5" fill="url(#vts-logo)" />
+      <rect
+        x="1.5"
+        y="1.5"
+        width="33"
+        height="33"
+        rx="9"
+        fill="none"
+        stroke="#ffffff"
+        stroke-opacity="0.18"
+      />
+      <!-- voyage route forming a V, with waypoints -->
+      <path
+        d="M10 11.5 L18 25 L26 11.5"
+        stroke="#ffffff"
+        stroke-width="2.6"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+      <circle cx="10" cy="11.5" r="2.1" fill="#ffffff" />
+      <circle cx="26" cy="11.5" r="2.1" fill="#ffffff" />
+      <circle cx="18" cy="25" r="2.6" fill="#ffffff" />
+      <circle cx="18" cy="25" r="2.6" fill="#ffffff">
+        <animate
+          attributeName="r"
+          values="2.6;4;2.6"
+          dur="2.6s"
+          repeatCount="indefinite"
+        />
+        <animate
+          attributeName="fill-opacity"
+          values="1;0;1"
+          dur="2.6s"
+          repeatCount="indefinite"
+        />
+      </circle>
+    </svg>
+  </span>
+
+  {
+    wordmark && (
+      <span class="flex flex-col leading-none">
+        <span class="text-[15px] font-semibold tracking-tight text-[var(--color-ink)]">
+          {big}
+        </span>
+        {rest && (
+          <span class="mt-0.5 text-[9.5px] font-medium uppercase tracking-[0.2em] text-[var(--color-muted)]">
+            {rest}
+          </span>
+        )}
+      </span>
+    )
+  }
+</a>
