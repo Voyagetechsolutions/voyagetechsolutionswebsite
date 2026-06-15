@@ -11,16 +11,19 @@ const services = [
     title: "Web & mobile apps",
     body: "Full-stack web and mobile applications — designed, built and shipped to production, not left at the prototype stage.",
     icon: "M4 4h16v12H4z M2 20h20 M9 8h6 M9 12h4",
+    img: "/images/service-web.webp",
   },
   {
     title: "Custom software & systems",
     body: "Internal tools, dashboards and line-of-business systems that put your operation on rails and scale past spreadsheets.",
     icon: "M9 8l-4 4 4 4 M15 8l4 4-4 4",
+    img: "/images/service-systems.webp",
   },
   {
     title: "Automation & integrations",
     body: "We connect your tools and automate the manual work — from document pipelines and reporting to data flowing between systems.",
     icon: "M13 2L4 14h7l-1 8 9-12h-7z",
+    img: "/images/service-automation.webp",
   },
 ];
 
@@ -191,28 +194,42 @@ const proof = [
     <div class="mt-10 grid gap-5 md:grid-cols-3">
       {
         services.map((s) => (
-          <div class="card group p-6">
-            <span class="mb-5 inline-grid h-12 w-12 place-items-center rounded-xl border border-[var(--color-line)] bg-[var(--color-brand-soft)] text-[var(--color-accent)] transition-colors group-hover:border-[var(--color-brand)]">
-              <svg
-                width="22"
-                height="22"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="1.7"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                aria-hidden="true"
-              >
-                <path d={s.icon} />
-              </svg>
-            </span>
-            <h3 class="text-lg font-semibold text-[var(--color-ink)]">
-              {s.title}
-            </h3>
-            <p class="mt-2 text-sm leading-relaxed text-[var(--color-muted)]">
-              {s.body}
-            </p>
+          <div class="card group overflow-hidden">
+            <div class="relative h-44 overflow-hidden bg-[var(--color-bg)]">
+              <img
+                src={s.img}
+                width="1024"
+                height="1024"
+                alt=""
+                loading="lazy"
+                decoding="async"
+                class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.06]"
+              />
+              <div class="absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-[var(--color-surface)] to-transparent" />
+            </div>
+            <div class="p-6 pt-0">
+              <span class="relative -mt-7 mb-4 inline-grid h-12 w-12 place-items-center rounded-xl border border-[var(--color-line)] bg-[var(--color-surface-2)] text-[var(--color-accent)] shadow-lg transition-colors group-hover:border-[var(--color-brand)]">
+                <svg
+                  width="22"
+                  height="22"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.7"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  aria-hidden="true"
+                >
+                  <path d={s.icon} />
+                </svg>
+              </span>
+              <h3 class="text-lg font-semibold text-[var(--color-ink)]">
+                {s.title}
+              </h3>
+              <p class="mt-2 text-sm leading-relaxed text-[var(--color-muted)]">
+                {s.body}
+              </p>
+            </div>
           </div>
         ))
       }
