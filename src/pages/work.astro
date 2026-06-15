@@ -1,5 +1,6 @@
 ---
 import Base from "../layouts/Base.astro";
+import PageHeader from "../components/PageHeader.astro";
 import CtaBand from "../components/CtaBand.astro";
 
 // Lead with the strongest, most concrete story. Add more only when each
@@ -40,15 +41,11 @@ const caseStudies = [
   title="Work"
   description="Real projects with real results — document automation and logistics tooling shipped to production."
 >
-  <section class="mx-auto max-w-6xl px-5 pt-20 pb-12 sm:px-6">
-    <h1 class="max-w-3xl text-4xl font-semibold tracking-tight sm:text-5xl">
-      The work
-    </h1>
-    <p class="mt-5 max-w-2xl text-lg leading-relaxed text-[var(--color-muted)]">
-      Proof beats adjectives. Here's what we built, the problem it solved, and
-      what changed as a result.
-    </p>
-  </section>
+  <PageHeader
+    eyebrow="Proof of work"
+    title="The work"
+    lead="Proof beats adjectives. Here's what we built, the problem it solved, and what changed as a result."
+  />
 
   <section class="mx-auto max-w-6xl space-y-6 px-5 pb-16 sm:px-6">
     {

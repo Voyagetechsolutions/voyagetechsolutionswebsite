@@ -1,6 +1,7 @@
 ---
 import Base from "../layouts/Base.astro";
 import Button from "../components/Button.astro";
+import PageHeader from "../components/PageHeader.astro";
 import { SITE } from "../config/site.ts";
 ---
 
@@ -8,16 +9,14 @@ import { SITE } from "../config/site.ts";
   title="Contact"
   description="Book a 20-minute call or send us a note. We reply to everything."
 >
-  <section class="mx-auto max-w-6xl px-5 pt-20 pb-20 sm:px-6">
-    <h1 class="max-w-3xl text-4xl font-semibold tracking-tight sm:text-5xl">
-      Let's talk
-    </h1>
-    <p class="mt-5 max-w-xl text-lg leading-relaxed text-[var(--color-muted)]">
-      The fastest path is a 20-minute call. Prefer to write first? Send a note —
-      we reply to everything.
-    </p>
+  <PageHeader
+    eyebrow="Get in touch"
+    title="Let's talk"
+    lead="The fastest path is a 20-minute call. Prefer to write first? Send a note — we reply to everything."
+  />
 
-    <div class="mt-12 grid gap-6 md:grid-cols-2">
+  <section class="mx-auto max-w-6xl px-5 pb-20 sm:px-6">
+    <div class="grid gap-6 md:grid-cols-2">
       <!-- Direct options -->
       <div class="rounded-[var(--radius-card)] border border-[var(--color-line)] bg-[var(--color-surface)] p-7">
         <h2 class="text-lg font-semibold text-[var(--color-ink)]">

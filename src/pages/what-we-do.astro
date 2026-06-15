@@ -1,74 +1,114 @@
 ---
 import Base from "../layouts/Base.astro";
+import PageHeader from "../components/PageHeader.astro";
 import CtaBand from "../components/CtaBand.astro";
 
-// The full range lives here — this is the page where "we build it" is allowed,
-// because the buyer who clicks through wants to confirm we do their thing.
-// Each entry: one line on the problem it solves + the outcome.
+// The full range lives here — this is the page where "we build it" is allowed.
+// Three cards reuse the brand 3D renders; the rest get a gradient + icon band
+// so every card carries a visual, uniformly.
 const services = [
   {
     title: "Custom software",
     line: "Manual processes and spreadsheets don't scale — we build the internal tools, dashboards and line-of-business apps that put your operation on rails.",
+    icon: "M9 8l-4 4 4 4 M15 8l4 4-4 4",
   },
   {
     title: "Web apps",
     line: "From idea to a product your team and customers actually use — full-stack web applications built and shipped to production, not left at the demo stage.",
+    icon: "M4 4h16v12H4z M2 20h20 M9 8h6 M9 12h4",
+    img: "/images/service-web.webp",
   },
   {
     title: "Mobile apps",
     line: "When the work happens away from a desk, we build the mobile apps that put your tools in your team's pocket.",
+    icon: "M8 3h8a1 1 0 011 1v16a1 1 0 01-1 1H8a1 1 0 01-1-1V4a1 1 0 011-1z M11 18h2",
   },
   {
     title: "Systems & integrations",
     line: "Your tools don't talk to each other and data gets re-keyed by hand — we connect them with APIs and data pipelines so information flows on its own.",
+    icon: "M5 5h5v5H5z M14 14h5v5h-5z M10 7.5h4 M7.5 10v4",
+    img: "/images/service-systems.webp",
   },
   {
     title: "Document & data automation",
     proven: true,
     line: "Paperwork and reporting eat hours every week — we automate PDF/CSV extraction, conversion and reporting into rule-driven pipelines that produce clean output every time.",
+    icon: "M7 3h7l4 4v14H7z M14 3v4h4 M9 13h6 M9 17h4",
+    img: "/images/service-automation.webp",
   },
   {
     title: "Compliance tooling",
     line: "Handling sensitive data in a regulated environment is a liability if it's done wrong — we build POPIA / data-protection-aware software with the guardrails regulated teams need.",
+    icon: "M12 3l7 3v5c0 4-3 7-7 9-4-2-7-5-7-9V6z M9 12l2 2 4-4",
   },
 ];
 ---
 
 <Base
   title="What we do"
-  description="Custom software, web and mobile apps, systems integration, and document & compliance automation for logistics, fintech and growing teams."
+  description="Custom software, web and mobile apps, systems integration, automation and compliance tooling — a full-stack software studio."
 >
-  <section class="mx-auto max-w-6xl px-5 pt-20 pb-12 sm:px-6">
-    <h1 class="max-w-3xl text-4xl font-semibold tracking-tight sm:text-5xl">
-      What we build
-    </h1>
-    <p class="mt-5 max-w-2xl text-lg leading-relaxed text-[var(--color-muted)]">
-      We're a full-stack software studio — if it runs on software, we build it.
-      Here's the complete range, each framed by the problem it clears, not the
-      tech behind it. (Document and data automation is a particular strength.)
-    </p>
-  </section>
+  <PageHeader
+    eyebrow="Full-stack software studio"
+    title="What we build"
+    lead="If it runs on software, we build it. Here's the complete range, each framed by the problem it clears, not the tech behind it. (Document and data automation is a particular strength.)"
+  />
 
   <section class="mx-auto max-w-6xl px-5 pb-16 sm:px-6">
-    <div class="grid gap-5 md:grid-cols-2">
+    <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
       {
         services.map((s, i) => (
-          <div class="card relative p-7">
-            {s.proven && (
-              <span class="absolute right-6 top-7 rounded-full border border-[var(--color-brand)]/30 bg-[var(--color-brand-soft)] px-2.5 py-1 text-xs font-semibold text-[var(--color-brand)]">
-                Proven strength
-              </span>
-            )}
-            <span class="text-xs font-semibold text-[var(--color-brand)]">
-              {String(i + 1).padStart(2, "0")}
-            </span>
-            <h2 class="mt-2 text-xl font-semibold text-[var(--color-ink)]">
-              {s.title}
-            </h2>
-            <p class="mt-3 text-sm leading-relaxed text-[var(--color-muted)]">
-              {s.line}
-            </p>
-          </div>
+          <article class="card group relative flex flex-col overflow-hidden">
+            <div class="relative h-40 overflow-hidden">
+              {s.img ? (
+                <img
+                  src={s.img}
+                  width="1024"
+                  height="1024"
+                  alt=""
+                  loading="lazy"
+                  decoding="async"
+                  class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.06]"
+                />
+              ) : (
+                <div class="grid h-full place-items-center bg-gradient-to-br from-[var(--color-brand-soft)] via-[var(--color-surface)] to-[var(--color-surface-2)]">
+                  <svg
+                    width="40"
+                    height="40"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    class="text-[var(--color-accent)] opacity-80 transition-transform duration-500 group-hover:scale-110"
+                    aria-hidden="true"
+                  >
+                    <path d={s.icon} />
+                  </svg>
+                </div>
+              )}
+              <div class="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-[var(--color-surface)] to-transparent" />
+              {s.proven && (
+                <span class="absolute right-4 top-4 rounded-full border border-[var(--color-brand)]/30 bg-[var(--color-bg)]/70 px-2.5 py-1 text-xs font-semibold text-[var(--color-brand)] backdrop-blur-sm">
+                  Proven strength
+                </span>
+              )}
+            </div>
+            <div class="flex flex-1 flex-col p-6">
+              <div class="flex items-center gap-3">
+                <span class="text-xs font-semibold text-[var(--color-brand)]">
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+                <h2 class="text-lg font-semibold text-[var(--color-ink)]">
+                  {s.title}
+                </h2>
+              </div>
+              <p class="mt-2 text-sm leading-relaxed text-[var(--color-muted)]">
+                {s.line}
+              </p>
+            </div>
+          </article>
         ))
       }
     </div>
