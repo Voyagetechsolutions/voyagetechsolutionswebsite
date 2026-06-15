@@ -23,6 +23,8 @@
 
   --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system,
     "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --font-display: "Space Grotesk", "Inter", ui-sans-serif, system-ui,
+    sans-serif;
 
   --radius-card: 16px;
 }
@@ -38,6 +40,15 @@ body {
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
+}
+
+/* Display typeface for headings — gives the site a designed voice. */
+h1,
+h2,
+h3,
+.font-display {
+  font-family: var(--font-display);
+  letter-spacing: -0.025em;
 }
 
 /* Focus ring that survives the reset, for keyboard users. */
@@ -105,6 +116,38 @@ body {
   animation: pulse-ring 2.4s ease-out infinite;
 }
 
+/* Gradient underline accent for a single emphasised word. */
+.accent-underline {
+  position: relative;
+  white-space: nowrap;
+}
+.accent-underline::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -0.08em;
+  height: 0.14em;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--color-brand), var(--color-accent));
+}
+
+/* Seamless scrolling capability marquee. */
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+.marquee {
+  overflow: hidden;
+  mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+}
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee 32s linear infinite;
+}
+
 /* Subtle sweeping sheen to draw the eye to the primary CTA. */
 @keyframes sheen {
   0% { transform: translateX(-130%) skewX(-14deg); }
@@ -136,5 +179,6 @@ body {
   .pulse-dot { animation: none; }
   .card { transition: none; }
   .cta-shimmer::after { animation: none; display: none; }
+  .marquee-track { animation: none; }
   html { scroll-behavior: auto; }
 }

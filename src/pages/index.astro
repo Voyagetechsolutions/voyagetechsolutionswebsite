@@ -4,19 +4,38 @@ import Button from "../components/Button.astro";
 import CtaBand from "../components/CtaBand.astro";
 import { SITE } from "../config/site.ts";
 
+// Three broad, outcome-first capabilities. `icon` is an SVG path drawn at
+// 24x24 with currentColor stroke.
 const services = [
   {
-    title: "Document automation",
-    body: "Turn manual, error-prone paperwork — invoices, delivery notes, customs docs — into rule-driven pipelines that produce clean, consistent output every time.",
+    title: "Web & mobile apps",
+    body: "Full-stack web and mobile applications — designed, built and shipped to production, not left at the prototype stage.",
+    icon: "M4 4h16v12H4z M2 20h20 M9 8h6 M9 12h4",
   },
   {
-    title: "Compliance tooling",
-    body: "Software built for regulated environments (POPIA, data-protection) where getting the handling of sensitive data wrong is not an option.",
+    title: "Custom software & systems",
+    body: "Internal tools, dashboards and line-of-business systems that put your operation on rails and scale past spreadsheets.",
+    icon: "M9 8l-4 4 4 4 M15 8l4 4-4 4",
   },
   {
-    title: "Full-stack product builds",
-    body: "End-to-end web apps and internal tools, shipped to production — not prototypes that stall before they reach your team.",
+    title: "Automation & integrations",
+    body: "We connect your tools and automate the manual work — from document pipelines and reporting to data flowing between systems.",
+    icon: "M13 2L4 14h7l-1 8 9-12h-7z",
   },
+];
+
+// Capability marquee — signals the full range at a glance.
+const capabilities = [
+  "Web apps",
+  "Mobile apps",
+  "Custom software",
+  "Dashboards",
+  "APIs & integrations",
+  "Automation",
+  "AI features",
+  "Document automation",
+  "Compliance tooling",
+  "Cloud & DevOps",
 ];
 
 const proof = [
@@ -46,19 +65,18 @@ const proof = [
           <span
             class="pulse-dot h-1.5 w-1.5 rounded-full bg-[var(--color-accent)]"
           ></span>
-          Software studio · Logistics &amp; fintech
+          Full-stack software studio
         </p>
         <h1
-          class="mt-6 max-w-2xl text-4xl font-semibold tracking-tight text-[var(--color-ink)] sm:text-5xl sm:leading-[1.07]"
+          class="mt-6 max-w-2xl text-4xl font-semibold tracking-tight text-[var(--color-ink)] sm:text-[3.4rem] sm:leading-[1.04]"
         >
-          We build <span class="text-gradient">software</span> for document and
-          compliance automation in logistics and fintech.
+          We build <span class="text-gradient">software</span> for
+          <span class="accent-underline">everything</span> your business runs on.
         </h1>
-        <p class="mt-5 max-w-xl text-lg leading-relaxed text-[var(--color-muted)]">
-          Shipping production software, not slide decks — and full-stack web,
-          mobile and systems work for teams that need it shipped, not promised.
-          We turn the paperwork, regulated workflows and stalled builds that slow
-          you down into reliable systems.
+        <p class="mt-6 max-w-xl text-lg leading-relaxed text-[var(--color-muted)]">
+          Web and mobile apps, custom systems, automation, integrations and AI —
+          designed, built and shipped to production. Whatever your business needs
+          built, we build it. No slide decks, no stalled prototypes.
         </p>
         <div class="mt-8 flex flex-col gap-3 sm:flex-row">
           <Button href={SITE.calendarUrl} external class="cta-shimmer"
@@ -116,8 +134,24 @@ const proof = [
     </div>
   </section>
 
+  <!-- Capability marquee -->
+  <section class="border-y border-[var(--color-line)] bg-[var(--color-surface)]/40 py-5">
+    <div class="marquee">
+      <div class="marquee-track">
+        {
+          [...capabilities, ...capabilities].map((c) => (
+            <span class="mx-5 inline-flex items-center gap-3 text-sm font-medium text-[var(--color-ink-soft)]">
+              <span class="h-1.5 w-1.5 rounded-full bg-[var(--color-brand)]" />
+              {c}
+            </span>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
   <!-- Proof strip -->
-  <section class="border-y border-[var(--color-line)] bg-[var(--color-mist)]">
+  <section class="border-b border-[var(--color-line)] bg-[var(--color-mist)]">
     <div class="mx-auto max-w-6xl px-5 py-10 sm:px-6">
       <p class="text-xs font-semibold uppercase tracking-wider text-[var(--color-muted)]">
         Proof of work
@@ -143,16 +177,36 @@ const proof = [
   <!-- What we do -->
   <section class="mx-auto max-w-6xl px-5 py-20 sm:px-6">
     <div class="max-w-2xl">
-      <h2 class="text-3xl font-semibold tracking-tight">What we do</h2>
-      <p class="mt-3 text-[var(--color-muted)]">
-        Three things we do well, framed by the outcome you get — not the tech we
-        use to get there.
+      <p class="text-xs font-semibold uppercase tracking-wider text-[var(--color-brand)]">
+        What we do
+      </p>
+      <h2 class="mt-3 text-3xl font-semibold tracking-tight sm:text-4xl">
+        If it runs on software, we build it.
+      </h2>
+      <p class="mt-4 text-[var(--color-muted)]">
+        From a single app to the systems your whole operation depends on —
+        framed by the outcome you get, not the tech behind it.
       </p>
     </div>
     <div class="mt-10 grid gap-5 md:grid-cols-3">
       {
         services.map((s) => (
-          <div class="card p-6">
+          <div class="card group p-6">
+            <span class="mb-5 inline-grid h-12 w-12 place-items-center rounded-xl border border-[var(--color-line)] bg-[var(--color-brand-soft)] text-[var(--color-accent)] transition-colors group-hover:border-[var(--color-brand)]">
+              <svg
+                width="22"
+                height="22"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.7"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+              >
+                <path d={s.icon} />
+              </svg>
+            </span>
             <h3 class="text-lg font-semibold text-[var(--color-ink)]">
               {s.title}
             </h3>
@@ -167,7 +221,7 @@ const proof = [
       <a
         href="/what-we-do"
         class="text-sm font-medium text-[var(--color-brand)] hover:underline"
-        >How we work with you →</a
+        >See the full range →</a
       >
     </div>
   </section>

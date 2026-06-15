@@ -18,10 +18,10 @@ export const SITE = {
   calendarUrl: "https://cal.com/your-handle/intro-call",
   /** One-line description for meta tags + footer. */
   tagline:
-    "We build software for document and compliance automation in logistics and fintech.",
+    "We build software — web and mobile apps, custom systems, automation and integrations, shipped to production.",
   /** Longer meta description for SEO / link previews. */
   description:
-    "We build document and compliance automation for logistics and fintech teams — shipping production software, not slide decks.",
+    "Voyage Technology Solutions is a full-stack software studio. We build web and mobile apps, custom systems, automation and integrations — designed and shipped to production, not promised in slide decks.",
   /** Optional social / external links. Leave empty to hide. */
   links: {
     linkedin: "",
