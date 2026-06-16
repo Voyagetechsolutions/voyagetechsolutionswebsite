@@ -30,27 +30,27 @@ export const SITE = {
     "We build software — web and mobile apps, custom systems, automation and integrations, shipped to production.",
   /** Default meta description (keyword-rich, under ~160 chars). */
   description:
-    "South Africa–based software development studio. We build custom software, web and mobile apps, automation and integrations for clients locally and worldwide — shipped to production, not promised in slide decks.",
+    "Johannesburg-based software development company serving all of South Africa and clients worldwide. We build custom software, web and mobile apps, automation and integrations — shipped to production.",
   /** Keyword themes used for meta + content (not a ranking factor alone, but guides copy). */
   keywords: [
     "software development company South Africa",
-    "custom software development",
+    "software development company Johannesburg",
+    "custom software development South Africa",
     "web application development",
     "mobile app development",
+    "software developers Johannesburg",
     "automation and integrations",
-    "software studio",
   ],
 
   /** Business location for local SEO + LocalBusiness schema. */
   location: {
-    /** TODO: exact city, e.g. "Johannesburg" / "Cape Town" / "Pretoria". */
-    city: "",
-    region: "Gauteng", // TODO: confirm province/region
+    city: "Johannesburg",
+    region: "Gauteng",
     country: "South Africa",
     countryCode: "ZA",
   },
-  /** Optional precise coordinates for LocalBusiness geo. Leave 0 to omit. */
-  geo: { lat: 0, lng: 0 },
+  /** Approx. Johannesburg CBD coordinates for LocalBusiness geo. */
+  geo: { lat: -26.2041, lng: 28.0473 },
   /** Areas served — local + international per the brief. */
   areaServed: ["South Africa", "Worldwide"],
   /** Indicative price band for schema ($ = budget … $$$$ = premium). */
