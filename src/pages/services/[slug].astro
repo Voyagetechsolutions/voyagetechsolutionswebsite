@@ -1,0 +1,157 @@
+---
+import Base from "../../layouts/Base.astro";
+import PageHeader from "../../components/PageHeader.astro";
+import Button from "../../components/Button.astro";
+import CtaBand from "../../components/CtaBand.astro";
+import { SERVICES } from "../../data/services.ts";
+import { SITE } from "../../config/site.ts";
+
+export function getStaticPaths() {
+  return SERVICES.map((s) => ({ params: { slug: s.slug }, props: { service: s } }));
+}
+
+const { service } = Astro.props;
+
+const schema = [
+  {
+    "@type": "Service",
+    name: service.h1,
+    serviceType: service.navLabel,
+    description: service.description,
+    areaServed: SITE.areaServed,
+    provider: { "@type": "Organization", name: SITE.name },
+  },
+  {
+    "@type": "FAQPage",
+    mainEntity: service.faqs.map((f) => ({
+      "@type": "Question",
+      name: f.q,
+      acceptedAnswer: { "@type": "Answer", text: f.a },
+    })),
+  },
+];
+---
+
+<Base
+  title={service.metaTitle}
+  description={service.description}
+  keywords={service.keywords}
+  image={service.image}
+  breadcrumbs={[
+    { name: "Services", path: "/what-we-do" },
+    { name: service.navLabel, path: `/services/${service.slug}` },
+  ]}
+  schema={schema}
+>
+  <PageHeader eyebrow="Services" title={service.h1}>
+    <div class="mt-6 grid items-center gap-10 lg:grid-cols-[1.05fr_0.95fr]">
+      <div>
+        <p class="max-w-xl text-lg leading-relaxed text-[var(--color-muted)]">
+          {service.lead}
+        </p>
+        <div class="mt-8 flex flex-col gap-3 sm:flex-row">
+          <Button href={SITE.calendarUrl} external class="cta-shimmer"
+            >Book a 20-min call</Button
+          >
+          <Button href="/work" variant="ghost">See the work</Button>
+        </div>
+      </div>
+      <div class="relative hidden lg:block">
+        <div class="glow pointer-events-none absolute -inset-6 -z-10 opacity-70"></div>
+        <div class="overflow-hidden rounded-3xl border border-[var(--color-line)] shadow-2xl shadow-[var(--color-brand)]/20">
+          <img
+            src={service.image}
+            width="1024"
+            height="1024"
+            alt={service.imageAlt}
+            loading="eager"
+            fetchpriority="high"
+            decoding="async"
+            class="h-full w-full object-cover"
+          />
+        </div>
+      </div>
+    </div>
+  </PageHeader>
+
+  <!-- Problem -->
+  <section class="mx-auto max-w-3xl px-5 py-16 sm:px-6">
+    <h2 class="text-2xl font-semibold tracking-tight sm:text-3xl">
+      {service.problem.heading}
+    </h2>
+    <p class="mt-4 text-lg leading-relaxed text-[var(--color-muted)]">
+      {service.problem.body}
+    </p>
+  </section>
+
+  <!-- What we build -->
+  <section class="border-t border-[var(--color-line)] bg-[var(--color-mist)]">
+    <div class="mx-auto max-w-6xl px-5 py-20 sm:px-6">
+      <h2 class="text-2xl font-semibold tracking-tight sm:text-3xl">
+        What we build
+      </h2>
+      <div class="mt-10 grid gap-5 sm:grid-cols-2">
+        {
+          service.build.map((b) => (
+            <div class="card p-6">
+              <h3 class="text-lg font-semibold text-[var(--color-ink)]">
+                {b.title}
+              </h3>
+              <p class="mt-2 text-sm leading-relaxed text-[var(--color-muted)]">
+                {b.text}
+              </p>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- Outcomes -->
+  <section class="mx-auto max-w-3xl px-5 py-20 sm:px-6">
+    <h2 class="text-2xl font-semibold tracking-tight sm:text-3xl">
+      Why teams choose Voyage
+    </h2>
+    <ul class="mt-8 space-y-4">
+      {
+        service.outcomes.map((o) => (
+          <li class="flex items-start gap-3">
+            <span class="mt-0.5 text-[var(--color-accent)]">✓</span>
+            <span class="text-[var(--color-ink-soft)]">{o}</span>
+          </li>
+        ))
+      }
+    </ul>
+  </section>
+
+  <!-- FAQ -->
+  <section class="border-t border-[var(--color-line)] bg-[var(--color-mist)]">
+    <div class="mx-auto max-w-3xl px-5 py-20 sm:px-6">
+      <h2 class="text-2xl font-semibold tracking-tight sm:text-3xl">
+        Frequently asked
+      </h2>
+      <div class="mt-8 divide-y divide-[var(--color-line)] border-y border-[var(--color-line)]">
+        {
+          service.faqs.map((f) => (
+            <details class="group py-4">
+              <summary class="flex cursor-pointer list-none items-center justify-between gap-4 text-left font-medium text-[var(--color-ink)]">
+                {f.q}
+                <span class="shrink-0 text-[var(--color-brand)] transition-transform duration-200 group-open:rotate-45">
+                  +
+                </span>
+              </summary>
+              <p class="mt-3 text-sm leading-relaxed text-[var(--color-muted)]">
+                {f.a}
+              </p>
+            </details>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <CtaBand
+    heading={`Need ${service.navLabel.toLowerCase()}?`}
+    sub="Tell us what you're trying to build. We'll tell you straight whether we're the right team — and what it'll take to ship it."
+  />
+</Base>

@@ -1,16 +1,17 @@
 ---
 import { SITE } from "../config/site.ts";
+import { SERVICES } from "../data/services.ts";
 import Button from "./Button.astro";
 import Logo from "./Logo.astro";
 
 const nav = [
-  { href: "/what-we-do", label: "What we do" },
   { href: "/work", label: "Work" },
   { href: "/endon-ai", label: "Endon AI" },
   { href: "/contact", label: "Contact" },
 ];
 
 const path = Astro.url.pathname.replace(/\/$/, "") || "/";
+const servicesActive = path === "/what-we-do" || path.startsWith("/services");
 ---
 
 <header
@@ -22,6 +23,58 @@ const path = Astro.url.pathname.replace(/\/$/, "") || "/";
     <Logo />
 
     <nav class="hidden items-center gap-7 md:flex" aria-label="Primary">
+      <!-- Services dropdown -->
+      <div class="group relative">
+        <a
+          href="/what-we-do"
+          class:list={[
+            "flex items-center gap-1 text-sm transition-colors hover:text-[var(--color-brand)]",
+            servicesActive
+              ? "text-[var(--color-brand)] font-medium"
+              : "text-[var(--color-muted)]",
+          ]}
+          aria-haspopup="true"
+        >
+          Services
+          <svg
+            width="12"
+            height="12"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.5"
+            class="transition-transform duration-200 group-hover:rotate-180"
+            aria-hidden="true"
+          >
+            <path d="M6 9l6 6 6-6" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+        </a>
+        <div
+          class="invisible absolute left-1/2 top-full z-50 w-72 -translate-x-1/2 pt-3 opacity-0 transition-all duration-150 group-hover:visible group-hover:opacity-100"
+        >
+          <div
+            class="overflow-hidden rounded-2xl border border-[var(--color-line)] bg-[var(--color-surface)] p-2 shadow-2xl shadow-black/40"
+          >
+            {
+              SERVICES.map((s) => (
+                <a
+                  href={`/services/${s.slug}`}
+                  class="block rounded-xl px-3 py-2 text-sm text-[var(--color-ink-soft)] transition-colors hover:bg-[var(--color-surface-2)] hover:text-[var(--color-brand)]"
+                >
+                  {s.navLabel}
+                </a>
+              ))
+            }
+            <a
+              href="/what-we-do"
+              class="mt-1 block rounded-xl border-t border-[var(--color-line)] px-3 py-2 text-sm font-medium text-[var(--color-brand)] hover:bg-[var(--color-surface-2)]"
+            >
+              All services →
+            </a>
+          </div>
+        </div>
+      </div>
+
       {
         nav.map((item) => (
           <a
