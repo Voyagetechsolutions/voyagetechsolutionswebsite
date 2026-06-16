@@ -59,7 +59,7 @@ export const SITE = {
 
   /** Social / external profiles (used as schema sameAs). Empty entries are skipped. */
   links: {
-    linkedin: "", // TODO: company LinkedIn URL
+    linkedin: "", // No company LinkedIn yet — leave empty; schema skips it cleanly.
     endonAi: "https://endonai.com",
   },
 
