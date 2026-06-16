@@ -24,8 +24,11 @@ const styles = {
     "border border-[var(--color-line)] bg-[var(--color-surface)] text-[var(--color-ink)] hover:border-[var(--color-brand)] hover:text-[var(--color-brand)]",
 };
 
-const rel = external ? "noopener noreferrer" : undefined;
-const target = external ? "_blank" : undefined;
+// Mailto/tel links must never get target=_blank — they'd open a blank tab.
+const isMailOrTel = href.startsWith("mailto:") || href.startsWith("tel:");
+const opensExternally = external && !isMailOrTel;
+const rel = opensExternally ? "noopener noreferrer" : undefined;
+const target = opensExternally ? "_blank" : undefined;
 ---
 
 <a

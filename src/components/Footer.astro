@@ -1,5 +1,5 @@
 ---
-import { SITE } from "../config/site.ts";
+import { SITE, BOOKING_HREF, HAS_CALENDAR } from "../config/site.ts";
 import { SERVICES } from "../data/services.ts";
 import Logo from "./Logo.astro";
 
@@ -60,9 +60,9 @@ const year = new Date().getFullYear();
           <li>
             <a
               class="hover:text-[var(--color-brand)]"
-              href={SITE.calendarUrl}
-              target="_blank"
-              rel="noopener noreferrer">Book a call</a
+              href={BOOKING_HREF}
+              {...(HAS_CALENDAR ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+              >{HAS_CALENDAR ? "Book a call" : "Email us to book"}</a
             >
           </li>
         </ul>

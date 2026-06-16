@@ -22,8 +22,9 @@ export const SITE = {
   email: "voyagetechsolutions@gmail.com",
   /** Phone in international format. Empty hides it. */
   phone: "+27 61 532 1107",
-  /** Booking link (Cal.com / Calendly). The primary conversion action. */
-  calendarUrl: "https://cal.com/your-handle/intro-call",
+  /** Booking link (Cal.com / Calendly). The primary conversion action.
+   *  Leave empty to fall back to a pre-filled email (see `bookingHref`). */
+  calendarUrl: "",
 
   /** Short tagline for footer + fallback meta. */
   tagline:
@@ -87,3 +88,17 @@ export const PROD_DOMAIN =
 export const SAME_AS: string[] = [SITE.links.linkedin, SITE.links.endonAi].filter(
   Boolean
 );
+
+/** Resolved "Book a call" target. Prefers the real calendar link; otherwise
+ *  composes a pre-filled mailto so the CTA always goes somewhere useful. */
+export const BOOKING_HREF: string =
+  SITE.calendarUrl ||
+  `mailto:${SITE.email}?subject=${encodeURIComponent(
+    "Booking a 20-minute call with Voyage"
+  )}&body=${encodeURIComponent(
+    "Hi Voyage team,\n\nI'd like to book a 20-minute call. Here's what I'm trying to build:\n\n[a few sentences]\n\nWhen works for you in the next week?\n\nThanks,\n"
+  )}`;
+
+/** True when a real calendar link is configured. Lets callsites adjust copy
+ *  (e.g. "Open the calendar" vs "Email us to book"). */
+export const HAS_CALENDAR: boolean = Boolean(SITE.calendarUrl);

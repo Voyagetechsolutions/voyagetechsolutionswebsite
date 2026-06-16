@@ -2,7 +2,7 @@
 import Base from "../layouts/Base.astro";
 import Button from "../components/Button.astro";
 import CtaBand from "../components/CtaBand.astro";
-import { SITE } from "../config/site.ts";
+import { SITE, BOOKING_HREF, HAS_CALENDAR } from "../config/site.ts";
 
 // Three broad, outcome-first capabilities. `icon` is an SVG path drawn at
 // 24x24 with currentColor stroke.
@@ -43,7 +43,7 @@ const capabilities = [
 
 const proof = [
   {
-    name: "Zimbabwe Shipping",
+    name: "Cross-border logistics",
     line: "Document & freight-ops pipeline for a cross-border logistics operation.",
   },
   {
@@ -121,8 +121,8 @@ const faqSchema = [
           built, we build it. No slide decks, no stalled prototypes.
         </p>
         <div class="mt-8 flex flex-col gap-3 sm:flex-row">
-          <Button href={SITE.calendarUrl} external class="cta-shimmer"
-            >Book a 20-min call</Button
+          <Button href={BOOKING_HREF} external class="cta-shimmer"
+            >{HAS_CALENDAR ? "Book a 20-min call" : "Get in touch"}</Button
           >
           <Button href="/work" variant="ghost">See the work</Button>
         </div>

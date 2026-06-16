@@ -1,5 +1,5 @@
 ---
-import { SITE } from "../config/site.ts";
+import { SITE, BOOKING_HREF, HAS_CALENDAR } from "../config/site.ts";
 import { SERVICES } from "../data/services.ts";
 import Button from "./Button.astro";
 import Logo from "./Logo.astro";
@@ -93,8 +93,8 @@ const servicesActive = path === "/what-we-do" || path.startsWith("/services");
     </nav>
 
     <div class="flex items-center gap-3">
-      <Button href={SITE.calendarUrl} external class="hidden sm:inline-flex">
-        Book a call
+      <Button href={BOOKING_HREF} external class="hidden sm:inline-flex">
+        {HAS_CALENDAR ? "Book a call" : "Get in touch"}
       </Button>
       <a
         href="/contact"
