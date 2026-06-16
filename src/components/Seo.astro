@@ -145,6 +145,14 @@ const graph = {
 />
 <meta name="author" content={SITE.name} />
 <meta name="theme-color" content="#060a16" />
+{
+  SITE.googleSiteVerification && (
+    <meta
+      name="google-site-verification"
+      content={SITE.googleSiteVerification}
+    />
+  )
+}
 <meta name="generator" content={Astro.generator} />
 
 <!-- Open Graph -->

@@ -19,9 +19,9 @@ export const SITE = {
    *  domain later and it'll be used everywhere. */
   domain: "vtsweb-theta.vercel.app",
   /** Contact inbox. Used for mailto links + schema. */
-  email: "hello@voyagetechsolutions.com",
-  /** TODO: real phone in international format, e.g. "+27 XX XXX XXXX". Empty hides it. */
-  phone: "",
+  email: "voyagetechsolutions@gmail.com",
+  /** Phone in international format. Empty hides it. */
+  phone: "+27 61 532 1107",
   /** Booking link (Cal.com / Calendly). The primary conversion action. */
   calendarUrl: "https://cal.com/your-handle/intro-call",
 
@@ -64,6 +64,10 @@ export const SITE = {
 
   /** Absolute-path share image (1200×630) generated into /public. */
   ogImage: "/og.png",
+
+  /** Google Search Console verification token (the `content` value of the
+   *  google-site-verification meta tag). Paste it here to verify ownership. */
+  googleSiteVerification: "",
 } as const;
 
 export type Site = typeof SITE;

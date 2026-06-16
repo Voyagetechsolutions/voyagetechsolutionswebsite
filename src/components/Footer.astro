@@ -30,6 +30,18 @@ const year = new Date().getFullYear();
           <li>
             <a class="hover:text-[var(--color-brand)]" href={`mailto:${SITE.email}`}>{SITE.email}</a>
           </li>
+          {
+            SITE.phone && (
+              <li>
+                <a
+                  class="hover:text-[var(--color-brand)]"
+                  href={`tel:${SITE.phone.replace(/\s/g, "")}`}
+                >
+                  {SITE.phone}
+                </a>
+              </li>
+            )
+          }
           <li>
             <a
               class="hover:text-[var(--color-brand)]"
