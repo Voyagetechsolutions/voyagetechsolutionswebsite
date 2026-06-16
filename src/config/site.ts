@@ -14,8 +14,10 @@ export const SITE = {
   /** Registered legal name for structured data. */
   legalName: "Voyage Technology Solutions",
 
-  /** TODO: confirm the real live domain (bare, no protocol). */
-  domain: "voyagetechsolutions.com",
+  /** Fallback domain (bare, no protocol). On Vercel the real production URL is
+   *  detected automatically — see PROD_DOMAIN below. Swap this for a custom
+   *  domain later and it'll be used everywhere. */
+  domain: "voyagetechsolutions.vercel.app",
   /** Contact inbox. Used for mailto links + schema. */
   email: "hello@voyagetechsolutions.com",
   /** TODO: real phone in international format, e.g. "+27 XX XXX XXXX". Empty hides it. */
@@ -65,6 +67,17 @@ export const SITE = {
 } as const;
 
 export type Site = typeof SITE;
+
+/**
+ * Resolved production domain. On Vercel, `VERCEL_PROJECT_PRODUCTION_URL` is the
+ * canonical production host (e.g. "voyagetechsolutions.vercel.app" or a custom
+ * domain once attached), so canonicals / sitemap / OG always point at the live
+ * URL with no manual step. Falls back to SITE.domain locally.
+ */
+export const PROD_DOMAIN =
+  (typeof process !== "undefined" &&
+    process.env?.VERCEL_PROJECT_PRODUCTION_URL) ||
+  SITE.domain;
 
 /** Profiles for schema `sameAs` — only non-empty links. */
 export const SAME_AS: string[] = [SITE.links.linkedin, SITE.links.endonAi].filter(

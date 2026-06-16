@@ -2,11 +2,11 @@
 import { defineConfig } from "astro/config";
 import tailwindcss from "@tailwindcss/vite";
 import sitemap from "@astrojs/sitemap";
-import { SITE } from "./src/config/site.ts";
+import { PROD_DOMAIN } from "./src/config/site.ts";
 
 // https://astro.build/config
 export default defineConfig({
-  site: `https://${SITE.domain}`,
+  site: `https://${PROD_DOMAIN}`,
   integrations: [
     sitemap({
       lastmod: new Date(),
