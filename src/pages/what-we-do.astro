@@ -2,6 +2,7 @@
 import Base from "../layouts/Base.astro";
 import PageHeader from "../components/PageHeader.astro";
 import CtaBand from "../components/CtaBand.astro";
+import { SITE } from "../config/site.ts";
 
 // The full range lives here — this is the page where "we build it" is allowed.
 // Three cards reuse the brand 3D renders; the rest get a gradient + icon band
@@ -42,11 +43,32 @@ const services = [
     icon: "M12 3l7 3v5c0 4-3 7-7 9-4-2-7-5-7-9V6z M9 12l2 2 4-4",
   },
 ];
+
+const serviceSchema = [
+  {
+    "@type": "ItemList",
+    name: "Software development services",
+    itemListElement: services.map((s, i) => ({
+      "@type": "ListItem",
+      position: i + 1,
+      item: {
+        "@type": "Service",
+        name: s.title,
+        description: s.line,
+        serviceType: s.title,
+        areaServed: SITE.areaServed,
+        provider: { "@type": "Organization", name: SITE.name },
+      },
+    })),
+  },
+];
 ---
 
 <Base
-  title="What we do"
-  description="Custom software, web and mobile apps, systems integration, automation and compliance tooling — a full-stack software studio."
+  title="Software Development Services"
+  description="Custom software, web and mobile apps, systems integration, automation and compliance tooling — a full-stack software studio in South Africa serving clients worldwide."
+  breadcrumbs={[{ name: "What we do", path: "/what-we-do" }]}
+  schema={serviceSchema}
 >
   <PageHeader
     eyebrow="Full-stack software studio"

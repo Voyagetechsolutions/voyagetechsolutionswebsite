@@ -1,0 +1,31 @@
+---
+import Base from "../layouts/Base.astro";
+import Button from "../components/Button.astro";
+import { SITE } from "../config/site.ts";
+---
+
+<Base title="Page not found" noindex>
+  <section class="relative overflow-hidden">
+    <div class="glow pointer-events-none absolute inset-0 -z-10 opacity-80"></div>
+    <div
+      class="mx-auto flex max-w-3xl flex-col items-center px-5 py-28 text-center sm:px-6"
+    >
+      <p class="text-sm font-semibold tracking-wider text-[var(--color-brand)]">
+        404
+      </p>
+      <h1 class="mt-3 text-4xl font-semibold tracking-tight sm:text-5xl">
+        This page took a wrong turn.
+      </h1>
+      <p class="mt-5 max-w-md text-lg leading-relaxed text-[var(--color-muted)]">
+        The page you're after doesn't exist or has moved. Let's get you back on
+        course.
+      </p>
+      <div class="mt-8 flex flex-col gap-3 sm:flex-row">
+        <Button href="/">Back to home</Button>
+        <Button href={SITE.calendarUrl} external variant="ghost"
+          >Book a call</Button
+        >
+      </div>
+    </div>
+  </section>
+</Base>

@@ -51,9 +51,48 @@ const proof = [
     line: "Browser-native, on-device PII redaction for regulated teams.",
   },
 ];
+
+// FAQ — answers real buyer questions (conversion) and earns FAQ rich results.
+const faqs = [
+  {
+    q: "What kind of software does Voyage build?",
+    a: "We're a full-stack software studio. We build web applications, mobile apps, custom internal systems and dashboards, plus automation and integrations between your existing tools. If it runs on software, there's a good chance we build it.",
+  },
+  {
+    q: "Do you work with clients outside South Africa?",
+    a: "Yes. We're based in South Africa and work with clients locally and worldwide, remotely. Most projects are run over calls, shared docs and regular demos, so location isn't a barrier.",
+  },
+  {
+    q: "How much does a software project cost?",
+    a: "It depends entirely on scope. We scope the work with you first and give a clear estimate before anything is committed — no open-ended billing. The fastest way to a number is a short call.",
+  },
+  {
+    q: "How long does a build take?",
+    a: "Small tools can ship in a couple of weeks; larger products run longer. We ship in phases to production rather than disappearing for months, so you see working software early and often.",
+  },
+  {
+    q: "Can you take over an existing or stalled project?",
+    a: "Yes. We regularly pick up half-finished builds, fix what's broken, and get them shipped. We'll review the current state honestly and tell you the most sensible path forward.",
+  },
+  {
+    q: "Do you build software for regulated, data-sensitive teams?",
+    a: "Yes — we build POPIA / data-protection-aware software with the right guardrails. Our own product, Endon AI, does on-device PII redaction, so handling sensitive data carefully is core to how we work.",
+  },
+];
+
+const faqSchema = [
+  {
+    "@type": "FAQPage",
+    mainEntity: faqs.map((f) => ({
+      "@type": "Question",
+      name: f.q,
+      acceptedAnswer: { "@type": "Answer", text: f.a },
+    })),
+  },
+];
 ---
 
-<Base>
+<Base schema={faqSchema}>
   <!-- Hero -->
   <section class="relative overflow-hidden">
     <div class="glow pointer-events-none absolute inset-0 -z-10"></div>
@@ -177,6 +216,23 @@ const proof = [
     </div>
   </section>
 
+  <!-- Studio intro (geo + entity keywords for SEO) -->
+  <section class="mx-auto max-w-6xl px-5 pt-20 sm:px-6">
+    <div class="max-w-3xl">
+      <h2 class="text-3xl font-semibold tracking-tight sm:text-4xl">
+        A South&nbsp;Africa–based software studio, building for clients
+        worldwide.
+      </h2>
+      <p class="mt-4 text-lg leading-relaxed text-[var(--color-muted)]">
+        Voyage Technology Solutions is a full-stack software development
+        company. We design and build web applications, mobile apps, custom
+        internal systems, automation and integrations — for startups and
+        established teams in South Africa and across the globe. Whatever you
+        need built in software, we ship it to production.
+      </p>
+    </div>
+  </section>
+
   <!-- What we do -->
   <section class="mx-auto max-w-6xl px-5 py-20 sm:px-6">
     <div class="max-w-2xl">
@@ -200,7 +256,7 @@ const proof = [
                 src={s.img}
                 width="1024"
                 height="1024"
-                alt=""
+                alt={`${s.title} — software development by ${SITE.name}`}
                 loading="lazy"
                 decoding="async"
                 class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.06]"
@@ -289,6 +345,33 @@ const proof = [
           </dl>
         </div>
       </div>
+    </div>
+  </section>
+
+  <!-- FAQ (also emitted as FAQPage structured data) -->
+  <section class="mx-auto max-w-3xl px-5 py-20 sm:px-6">
+    <p class="text-xs font-semibold uppercase tracking-wider text-[var(--color-brand)]">
+      Questions, answered
+    </p>
+    <h2 class="mt-3 text-3xl font-semibold tracking-tight sm:text-4xl">
+      Frequently asked
+    </h2>
+    <div class="mt-8 divide-y divide-[var(--color-line)] border-y border-[var(--color-line)]">
+      {
+        faqs.map((f) => (
+          <details class="group py-4">
+            <summary class="flex cursor-pointer list-none items-center justify-between gap-4 text-left font-medium text-[var(--color-ink)]">
+              {f.q}
+              <span class="shrink-0 text-[var(--color-brand)] transition-transform duration-200 group-open:rotate-45">
+                +
+              </span>
+            </summary>
+            <p class="mt-3 text-sm leading-relaxed text-[var(--color-muted)]">
+              {f.a}
+            </p>
+          </details>
+        ))
+      }
     </div>
   </section>
 

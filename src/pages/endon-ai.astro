@@ -22,8 +22,21 @@ const points = [
 ---
 
 <Base
-  title="Endon AI"
-  description="Endon AI — browser-native, on-device PII redaction before your data reaches external AI tools."
+  title="Endon AI — On-device PII Redaction"
+  description="Endon AI — browser-native, on-device PII redaction that strips sensitive data before it reaches external AI tools. Built by Voyage Technology Solutions for regulated teams."
+  breadcrumbs={[{ name: "Endon AI", path: "/endon-ai" }]}
+  schema={[
+    {
+      "@type": "SoftwareApplication",
+      name: "Endon AI",
+      applicationCategory: "SecurityApplication",
+      operatingSystem: "Web browser",
+      url: SITE.links.endonAi,
+      description:
+        "Browser-native, on-device PII redaction that strips sensitive data before it reaches external AI tools.",
+      publisher: { "@type": "Organization", name: SITE.name },
+    },
+  ]}
 >
   <PageHeader eyebrow="Our product" title="Endon AI">
     <p class="mt-5 max-w-2xl text-lg leading-relaxed text-[var(--color-muted)]">

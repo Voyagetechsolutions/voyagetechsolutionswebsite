@@ -1,32 +1,72 @@
 /**
- * Single source of truth for company identity.
+ * Single source of truth for company identity + SEO.
  *
- * REBRAND CHECKLIST: to rename the company or change contact details,
- * edit the values below and swap the logo asset in /public. Nothing else
- * in the codebase should hard-code the name, domain, email, or links.
+ * REBRAND / GO-LIVE CHECKLIST: edit the values below and swap the logo asset
+ * in /public. Anything marked `TODO` must be filled in with real data before
+ * launch — search rankings and rich results depend on accurate NAP
+ * (name / address / phone) and the real domain.
  */
 export const SITE = {
   /** Company name, shown in header, footer, titles. */
   name: "Voyage Technology Solutions",
   /** Short name for tight spaces (nav, logo wordmark). */
   shortName: "Voyage",
-  /** Bare domain, no protocol. Used for canonical URLs + email. */
+  /** Registered legal name for structured data. */
+  legalName: "Voyage Technology Solutions",
+
+  /** TODO: confirm the real live domain (bare, no protocol). */
   domain: "voyagetechsolutions.com",
-  /** Contact inbox. Used for mailto links everywhere. */
+  /** Contact inbox. Used for mailto links + schema. */
   email: "hello@voyagetechsolutions.com",
+  /** TODO: real phone in international format, e.g. "+27 XX XXX XXXX". Empty hides it. */
+  phone: "",
   /** Booking link (Cal.com / Calendly). The primary conversion action. */
   calendarUrl: "https://cal.com/your-handle/intro-call",
-  /** One-line description for meta tags + footer. */
+
+  /** Short tagline for footer + fallback meta. */
   tagline:
     "We build software — web and mobile apps, custom systems, automation and integrations, shipped to production.",
-  /** Longer meta description for SEO / link previews. */
+  /** Default meta description (keyword-rich, under ~160 chars). */
   description:
-    "Voyage Technology Solutions is a full-stack software studio. We build web and mobile apps, custom systems, automation and integrations — designed and shipped to production, not promised in slide decks.",
-  /** Optional social / external links. Leave empty to hide. */
+    "South Africa–based software development studio. We build custom software, web and mobile apps, automation and integrations for clients locally and worldwide — shipped to production, not promised in slide decks.",
+  /** Keyword themes used for meta + content (not a ranking factor alone, but guides copy). */
+  keywords: [
+    "software development company South Africa",
+    "custom software development",
+    "web application development",
+    "mobile app development",
+    "automation and integrations",
+    "software studio",
+  ],
+
+  /** Business location for local SEO + LocalBusiness schema. */
+  location: {
+    /** TODO: exact city, e.g. "Johannesburg" / "Cape Town" / "Pretoria". */
+    city: "",
+    region: "Gauteng", // TODO: confirm province/region
+    country: "South Africa",
+    countryCode: "ZA",
+  },
+  /** Optional precise coordinates for LocalBusiness geo. Leave 0 to omit. */
+  geo: { lat: 0, lng: 0 },
+  /** Areas served — local + international per the brief. */
+  areaServed: ["South Africa", "Worldwide"],
+  /** Indicative price band for schema ($ = budget … $$$$ = premium). */
+  priceRange: "$$",
+
+  /** Social / external profiles (used as schema sameAs). Empty entries are skipped. */
   links: {
-    linkedin: "",
+    linkedin: "", // TODO: company LinkedIn URL
     endonAi: "https://endonai.com",
   },
+
+  /** Absolute-path share image (1200×630) generated into /public. */
+  ogImage: "/og.png",
 } as const;
 
 export type Site = typeof SITE;
+
+/** Profiles for schema `sameAs` — only non-empty links. */
+export const SAME_AS: string[] = [SITE.links.linkedin, SITE.links.endonAi].filter(
+  Boolean
+);
