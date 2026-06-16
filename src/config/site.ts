@@ -17,7 +17,7 @@ export const SITE = {
   /** Fallback domain (bare, no protocol). On Vercel the real production URL is
    *  detected automatically — see PROD_DOMAIN below. Swap this for a custom
    *  domain later and it'll be used everywhere. */
-  domain: "voyagetechsolutions.vercel.app",
+  domain: "vtsweb-theta.vercel.app",
   /** Contact inbox. Used for mailto links + schema. */
   email: "hello@voyagetechsolutions.com",
   /** TODO: real phone in international format, e.g. "+27 XX XXX XXXX". Empty hides it. */
